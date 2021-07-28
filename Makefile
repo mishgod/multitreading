@@ -10,13 +10,12 @@ OBJECTS	= $(SOURCES:.c=.o)
 
 HEADER	= -I philo.h
 
-.c.o: $(HEADER)
-	${CC} $(CFLAGS) ${HEADER} -c $< -o ${<:.c=.o}
+.c.o: ${CC} ${CFLAGS} ${HEADER} -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	${CC} ${CFLAGS} -o $(NAME)
+	${CC} ${CFLAGS} ${OBJECTS} -o $(NAME)
 
 
 

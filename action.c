@@ -50,7 +50,7 @@ t_philo	*set_vars(void *my_struct)
 	philo->last_eat = philo->all->begin_time;
 	philo->flag_eat_count = 0;
 	if (philo->id % 2 == 0)
-		ft_usleep(philo->all->time_to_eat / 2);
+		ft_usleep(200);
 	return (philo);
 }
 

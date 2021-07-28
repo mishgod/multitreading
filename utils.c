@@ -35,7 +35,7 @@ static int	char_to_int(int i, const char *str, int k)
 		return (k * num);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		i;
 	int		j;

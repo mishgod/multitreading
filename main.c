@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int	check_data(int argc, char *argv[], t_maj_struct *all)
+static int	check_data(int argc, char *argv[], t_maj_struct *all)
 {
 	all->flag_eat_times = 0;
 	all->flag_death = 0;

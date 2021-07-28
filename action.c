@@ -41,7 +41,7 @@ void	*monitor(void *my_struct)
 	}
 }
 
-t_philo	*set_vars(void *my_struct)
+static t_philo	*set_vars(void *my_struct)
 {
 	t_philo	*philo;
 
@@ -54,7 +54,7 @@ t_philo	*set_vars(void *my_struct)
 	return (philo);
 }
 
-void	ft_eating(t_philo *philo)
+static void	ft_eating(t_philo *philo)
 {
 	print_status(philo, "is eating", "\x1b[33m");
 	philo->last_eat = get_time(0);

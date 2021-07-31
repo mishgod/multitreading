@@ -45,8 +45,6 @@ typedef struct s_philo
 	pthread_mutex_t	*print;
 }				t_philo;
 
-pthread_mutex_t prnt;
-
 int		init_mutex(t_maj_struct *all);
 t_philo	*init_philo(t_maj_struct *all);
 int		launch_philos(t_philo *philo, t_maj_struct *all);

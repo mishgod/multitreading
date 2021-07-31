@@ -22,7 +22,7 @@
 typedef struct s_maj_struct
 {
 	int				num_of_philos;
-	int				time_to_die;
+	long			time_to_die;
 	int				time_to_sleep;
 	int				time_to_eat;
 	int				eat_times;
@@ -30,8 +30,7 @@ typedef struct s_maj_struct
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
 	long			begin_time;
-	int				flag_death;
-
+	pthread_mutex_t	print;
 }				t_maj_struct;
 
 typedef struct s_philo
@@ -43,7 +42,10 @@ typedef struct s_philo
 	long			last_eat;
 	int				eat_count;
 	int				flag_eat_count;
+	pthread_mutex_t	*print;
 }				t_philo;
+
+pthread_mutex_t prnt;
 
 int		init_mutex(t_maj_struct *all);
 t_philo	*init_philo(t_maj_struct *all);
@@ -54,4 +56,5 @@ void	print_status(t_philo *philo, char *str, char *clr);
 long	get_time(long begin);
 void	ft_usleep(int interval);
 int		ft_atoi(const char *str);
+
 #endif

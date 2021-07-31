@@ -57,13 +57,15 @@ int	ft_atoi(const char *str)
 
 void	print_status(t_philo *philo, char *str, char *clr)
 {
-	long	time;
+	long	begin_time;
 
-	time = get_time(philo->all->begin_time);
-	pthread_mutex_lock(&philo->all->mutex[philo->all->num_of_philos]);
-	printf("%s%lu %d %s\n", clr, time, philo->id + 1, str);
-	if (!philo->all->flag_death)
-		pthread_mutex_unlock(&philo->all->mutex[philo->all->num_of_philos]);
+	begin_time = philo->all->begin_time;
+	if (get_time(begin_time) - philo->last_eat < philo->all->time_to_die)
+	{
+		pthread_mutex_lock(philo->print);
+		printf("%s%lu %d %s\n", clr, get_time(begin_time), philo->id + 1, str);
+		pthread_mutex_unlock(philo->print);
+	}
 }
 
 long	get_time(long begin)
@@ -85,7 +87,7 @@ void	ft_usleep(int interval)
 	end = get_time(0) + interval;
 	while (begin < end)
 	{
-		usleep(50);
+		usleep(200);
 		begin = get_time(0);
 	}
 }

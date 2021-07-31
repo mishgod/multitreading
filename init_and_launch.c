@@ -24,7 +24,7 @@ int	init_mutex(t_maj_struct *all)
 		return (0);
 	}
 	i = 0;
-	while (i < all->num_of_philos)
+	while (i <= all->num_of_philos)
 	{
 		if (pthread_mutex_init(&all->mutex[i], NULL))
 		{
@@ -34,6 +34,20 @@ int	init_mutex(t_maj_struct *all)
 		i++;
 	}
 	return (1);
+}
+
+static void	set_vars(t_philo *philo, t_maj_struct *all, int i)
+{
+	philo->all = all;
+	philo->id = i;
+	if (i == 0)
+		philo->left_fork = &all->mutex[all->num_of_philos - 1];
+	else
+		philo->left_fork = &all->mutex[i - 1];
+	philo->right_fork = &all->mutex[i];
+	philo->eat_count = 0;
+	philo->flag_eat_count = 0;
+	philo->print = &all->mutex[all->num_of_philos];
 }
 
 t_philo	*init_philo(t_maj_struct *all)
@@ -47,18 +61,9 @@ t_philo	*init_philo(t_maj_struct *all)
 		printf("Memory is not located\n");
 		return (NULL);
 	}
-	i = 0;
-	while (i < all->num_of_philos)
-	{
-		philo[i].all = all;
-		philo[i].id = i;
-		if (i == 0)
-			philo[i].left_fork = &all->mutex[all->num_of_philos - 1];
-		else
-			philo[i].left_fork = &all->mutex[i - 1];
-		philo[i].right_fork = &all->mutex[i];
-		i++;
-	}
+	i = -1;
+	while (++i < all->num_of_philos)
+		set_vars(&philo[i], all, i);
 	return (philo);
 }
 
@@ -68,7 +73,7 @@ int	launch_philos(t_philo *philo, t_maj_struct *all)
 	int	nop;
 
 	i = 0;
-	all->begin_time = get_time(0);
+	philo->all->begin_time = get_time(0);
 	while (i < all->num_of_philos)
 	{
 		pthread_create(&all->thread[i], NULL, action, (void *) &philo[i]);
@@ -77,8 +82,5 @@ int	launch_philos(t_philo *philo, t_maj_struct *all)
 	nop = all->num_of_philos;
 	pthread_create(&all->thread[nop], NULL, monitor, (void *) philo);
 	pthread_join(all->thread[all->num_of_philos], NULL);
-	i = 0;
-	while (i < all->num_of_philos)
-		pthread_detach(all->thread[i++]);
 	return (1);
 }

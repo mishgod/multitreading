@@ -15,7 +15,6 @@
 static int	check_data(int argc, char *argv[], t_maj_struct *all)
 {
 	all->flag_eat_times = 0;
-	all->flag_death = 0;
 	all->num_of_philos = ft_atoi(argv[1]);
 	all->time_to_die = ft_atoi(argv[2]);
 	all->time_to_eat = ft_atoi(argv[3]);
@@ -50,9 +49,10 @@ int	main(int argc, char *argv[])
 			return (0);
 		if (!launch_philos(philo, &all))
 			return (0);
-		free(all.mutex);
 		free(all.thread);
 		free(philo);
+		free(all.mutex);
+		return (0);
 	}
 	else
 	{

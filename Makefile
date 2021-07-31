@@ -4,7 +4,7 @@ CC		= gcc
 
 CFLAGS	=  -Wall  -Werror -Wextra
 
-SOURCES	= main.c utils.c init_and_lounch.c action.c
+SOURCES	= main.c utils.c init_and_launch.c action.c
 
 OBJECTS	= $(SOURCES:.c=.o)
 
@@ -16,8 +16,6 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	${CC} ${CFLAGS} ${OBJECTS} -o $(NAME)
-
-
 
 clean:
 	-rm -f $(OBJECTS)

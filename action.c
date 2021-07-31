@@ -16,7 +16,6 @@ static int	check_philo(t_philo *philo, int *filled)
 {
 	long	last_eat;
 	long	time;
-	long	new_time;
 
 	time = get_time(philo->all->begin_time);
 	last_eat = philo->last_eat;

@@ -62,4 +62,4 @@ Use `make re` to recompile.
 
 Use `make clean` to delete `.o`files.
 
-Use `make fclean` to delete `multithreading`, `libft.a` and `.o`files.
+Use `make fclean` to delete `multithreading` and `.o`files.

@@ -1,4 +1,4 @@
-NAME	= philo
+NAME	= multireading
 
 CC		= gcc
 

@@ -14,7 +14,8 @@ No memory leaks.
 
 ## Requirements
 
-There are N philosophers who sit at the table and have three states: sleep, think and eat. The program should take the following arguments: `number_of_philosophers` `time_to_die`
+There are N philosophers who sit at the table and have three states: sleep, think and eat. The program should take the 
+following arguments: `number_of_philosophers` `time_to_die`
 `time_to_eat` `time_to_sleep` `number_of_times_each_philosopher_must_eat`.
 
 ◦ `number_of_philosophers`: is the number of philosophers and also the number
@@ -52,11 +53,15 @@ Philosophers should avoid dying.
 • One fork between each philosopher, therefore if they are multiple philosophers, there
 will be a fork at the right and the left of each philosopher.
 
+• It can't be more than 200 philosophers.
+
 ## Usage
 
 Use `make` to compile the executable file.
 
-Use `./multithreading` to launch program.
+Use `./multithreading [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep]` to launch program.
+
+For example: `./multithreading 5 700 200 200` or `./multithreading 5 700 200 200 4`
 
 Use `make re` to recompile.
 
